@@ -15,11 +15,14 @@ class User {
     this.users.push(newUser);
     localStorage.setItem("users", JSON.stringify(this.users));
 
-    // return (window.location.href = "../signin.html");
-
     Swal.fire({
-      title: "SweetAlert2 is working!",
-      confirmButtonColor: "#3085d6",
+      title: "Saved!",
+      icon: "success",
+      confirmButtonText: "OK",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        return (window.location.href = "../signin.html");
+      }
     });
   }
 
