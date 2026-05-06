@@ -15,15 +15,30 @@ class User {
     this.users.push(newUser);
     localStorage.setItem("users", JSON.stringify(this.users));
 
-    Swal.fire({
-      title: "Saved!",
-      icon: "success",
-      confirmButtonText: "OK",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        return (window.location.href = "../signin.html");
-      }
-    });
+    // Proses pengembalian data ke addUser.js (controller)
+    return {
+      success: true,
+      username: newUser.username,
+    };
+  }
+
+  signInUser(usernameByInput) {
+    // Proses pemeriksaan data username pada localstorage
+    const userExist = this.users.some((user) => user.username.toLowerCase() === usernameByInput.toLowerCase());
+    console.info(userExist);
+    // Proses pengembalian data ke signIn.js (controller)
+    if (userExist) {
+      localStorage.setItem("isLoggedIn", usernameByInput)
+      return {
+        success: true,
+        usernameByInput,
+      };
+    } else {
+      return {
+        success: false,
+        message: `Username {${usernameByInput}} is not available`,
+      };
+    }
   }
 
   getUsers() {

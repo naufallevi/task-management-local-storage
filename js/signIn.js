@@ -6,27 +6,26 @@ document.addEventListener("DOMContentLoaded", () => {
   formAddUser.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const userData = {
-      username: formAddUser.querySelector("#username").value,
-    };
+    const usernameByInput = formAddUser.querySelector("#username").value;
 
-    const result = userManager.saveUser(userData);
+    const result = userManager.signInUser(usernameByInput);
 
     if (result.success) {
       Swal.fire({
-        title: "Success",
+        title: `Login`,
         icon: "success",
-        text: `{${result.username}} successfully saved!`,
+        text: `{${result.username}} successful login`,
         confirmButtonText: "OK",
       }).then((result) => {
         if (result.isConfirmed) {
-          return (window.location.href = "../signin.html");
+          return (window.location.href = "../tasks.html");
         }
       });
     } else {
       Swal.fire({
         title: `Error!`,
         icon: "error",
+        text: `{${result.message}}`,
       });
     }
   });
