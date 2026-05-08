@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         confirmButtonText: "OK",
       }).then((result) => {
         if (result.isConfirmed) {
-          // return (window.location.href = "../tasks.html");
+          return (window.location.href = "../tasks.html");
         }
       });
     } else {

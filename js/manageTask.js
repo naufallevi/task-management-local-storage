@@ -8,16 +8,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const taskWrapper = document.getElementById("taskWrapper");
   const taskWrapperEmpty = document.getElementById("taskWrapperEmpty");
 
-  (function displayAllTasks() {
-    if (existingTasks.length === 0) {
+  function displayAllTasks(tasks = existingTasks) {
+    if (tasks.length === 0) {
       console.info("Data kosong");
       taskWrapper.className = "hidden";
+      taskWrapperEmpty.className = "flex justify-center items-center h-[420px] mx-auto"
     } else {
-      // console.info("Data ada dan siap ditampilkan");
+      taskWrapper.innerHTML = "";
+      console.info("Data ada dan siap ditampilkan");
       taskWrapperEmpty.className = "hidden";
 
-      existingTasks.forEach((task) => {
-        const userFriendlyDate = formatDate(task.created_at)
+      tasks.forEach((task) => {
+        const userFriendlyDate = formatDate(task.created_at);
 
         const itemTask = document.createElement("div");
         itemTask.className = "flex justify-between bg-white p-5 w-full rounded-3xl";
@@ -80,17 +82,42 @@ document.addEventListener("DOMContentLoaded", () => {
                             </div>
                         </div>
                         <div class="flex flex-row items-center gap-x-3">
-                            <a href="#"
+                            <a href="#" id="deleteTask-${task.id}"
                                 class="my-auto font-semibold text-taskia-red border border-taskia-red p-[12px_20px] h-12 rounded-full">Delete</a>
-                            <a href="#"
+                            ${
+                                task.isCompleted === false ? `
+                            <a href="#" id="completeTask-${task.id}"
                                 class="flex gap-[10px] justify-center items-center text-white p-[12px_20px] h-12 font-semibold bg-gradient-to-b from-[#977FFF] to-[#6F4FFF] rounded-full w-full border border-taskia-background-grey">Complete</a>
+                                ` : `
+                            <a href="#" id="completeTask-${task.id}"
+                                class="hidden">Complete</a>
+                                `
+                            }
                         </div>
                     </div>
       `;
         taskWrapper.appendChild(itemTask);
+
+        itemTask.querySelector(`#completeTask-${task.id}`).addEventListener("click", (event) => {
+          event.preventDefault();
+          //   console.info(task.id);
+          myTasks.completeTask(task.id);
+
+          const updateData = myTasks.getTasks();
+          displayAllTasks(updateData);
+        });
+
+        itemTask.querySelector(`#deleteTask-${task.id}`).addEventListener("click", (event) => {
+          event.preventDefault();
+          //   console.info(task.id);
+          myTasks.deleteTask(task.id);
+
+          const updateData = myTasks.getTasks();
+          displayAllTasks(updateData);
+        });
       });
     }
-  })();
+  }
 
   function capitalizeFirstChar(str) {
     if (!str) return str;
@@ -112,4 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // return date.toLocaleString("id-ID", options);
     return date.toLocaleString("en-US", options);
   }
+
+  displayAllTasks();
 });
