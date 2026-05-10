@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (tasks.length === 0) {
       console.info("Data kosong");
       taskWrapper.className = "hidden";
-      taskWrapperEmpty.className = "flex justify-center items-center h-[420px] mx-auto"
+      taskWrapperEmpty.className = "flex justify-center items-center h-[420px] mx-auto";
     } else {
       taskWrapper.innerHTML = "";
       console.info("Data ada dan siap ditampilkan");
@@ -23,7 +23,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const itemTask = document.createElement("div");
         itemTask.className = "flex justify-between bg-white p-5 w-full rounded-3xl";
-        itemTask.innerHTML = `
+        itemTask.innerHTML = createItemTaskHTML(task, userFriendlyDate);
+        taskWrapper.appendChild(itemTask);
+
+        itemTask.querySelector(`#completeTask-${task.id}`).addEventListener("click", (event) => {
+          event.preventDefault();
+          //   console.info(task.id);
+          myTasks.completeTask(task.id);
+
+          const updateData = myTasks.getTasks();
+          displayAllTasks(updateData);
+        });
+
+        itemTask.querySelector(`#deleteTask-${task.id}`).addEventListener("click", (event) => {
+          event.preventDefault();
+          //   console.info(task.id);
+          myTasks.deleteTask(task.id);
+
+          const updateData = myTasks.getTasks();
+          displayAllTasks(updateData);
+        });
+      });
+    }
+  }
+
+  function createItemTaskHTML(task, userFriendlyDate) {
+    return `
                     <div class="flex justify-between bg-white p-5 w-full rounded-3xl">
                         <div class="task-card flex flex-col gap-5">
                             <div class="flex gap-3 items-center">
@@ -95,28 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             }
                         </div>
                     </div>
-      `;
-        taskWrapper.appendChild(itemTask);
-
-        itemTask.querySelector(`#completeTask-${task.id}`).addEventListener("click", (event) => {
-          event.preventDefault();
-          //   console.info(task.id);
-          myTasks.completeTask(task.id);
-
-          const updateData = myTasks.getTasks();
-          displayAllTasks(updateData);
-        });
-
-        itemTask.querySelector(`#deleteTask-${task.id}`).addEventListener("click", (event) => {
-          event.preventDefault();
-          //   console.info(task.id);
-          myTasks.deleteTask(task.id);
-
-          const updateData = myTasks.getTasks();
-          displayAllTasks(updateData);
-        });
-      });
-    }
+    `;
   }
 
   function capitalizeFirstChar(str) {

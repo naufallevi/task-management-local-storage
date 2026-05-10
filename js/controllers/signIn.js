@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
       Swal.fire({
         title: `Login`,
         icon: "success",
-        text: `{${result.username}} successful login`,
+        text: `{${result.usernameByInput}} successful login`,
         confirmButtonText: "OK",
       }).then((result) => {
         if (result.isConfirmed) {
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       Swal.fire({
         title: `Error!`,
         icon: "error",
-        text: `{${result.message}}`,
+        text: `${result.message}`,
       });
     }
   });

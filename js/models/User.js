@@ -25,10 +25,11 @@ class User {
   signInUser(usernameByInput) {
     // Proses pemeriksaan data username pada localstorage
     const userExist = this.users.some((user) => user.username.toLowerCase() === usernameByInput.toLowerCase());
-    console.info(userExist);
+    // console.info(userExist);
+    
     // Proses pengembalian data ke signIn.js (controller)
     if (userExist) {
-      localStorage.setItem("isLoggedIn", usernameByInput)
+      localStorage.setItem("isLoggedIn", usernameByInput);
       return {
         success: true,
         usernameByInput,
@@ -45,5 +46,3 @@ class User {
     return JSON.parse(localStorage.getItem("users")) || [];
   }
 }
-
-const user = new User();
