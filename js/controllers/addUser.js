@@ -3,11 +3,22 @@
 document.addEventListener("DOMContentLoaded", () => {
   const formAddUser = document.getElementById("userForm");
   const userManager = new User();
+
   formAddUser.addEventListener("submit", (event) => {
     event.preventDefault();
 
+    const inputUsername = formAddUser.querySelector("#username").value.trim();
+
+    if (!inputUsername) {
+      return Swal.fire({
+        title: "Warning",
+        icon: "warning",
+        text: "Please enter the correct username!",
+      });
+    }
+
     const userData = {
-      username: formAddUser.querySelector("#username").value,
+      username: inputUsername,
     };
 
     const result = userManager.saveUser(userData);
@@ -16,17 +27,18 @@ document.addEventListener("DOMContentLoaded", () => {
       Swal.fire({
         title: "Success",
         icon: "success",
-        text: `{${result.username}} successfully saved!`,
+        text: `${result.username} successfully saved!`,
         confirmButtonText: "OK",
       }).then((result) => {
         if (result.isConfirmed) {
-          return (window.location.href = "../signin.html");
+          window.location.href = "../signin.html";
         }
       });
     } else {
       Swal.fire({
         title: `Error!`,
         icon: "error",
+        text: result.message,
       });
     }
   });

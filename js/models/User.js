@@ -7,6 +7,16 @@ class User {
   }
 
   saveUser(userData) {
+    // Proses pemeriksaan data username pada localstorage
+    const validationUserData = this.isUserExist(userData);
+
+    if (validationUserData) {
+      return {
+        success: false,
+        message: `Username ${userData.username} already exists`,
+      };
+    }
+
     const newUser = {
       id: Date.now(),
       ...userData,
@@ -40,6 +50,11 @@ class User {
         message: `Username {${usernameByInput}} is not available`,
       };
     }
+  }
+
+  isUserExist(userData) {
+    // Validasi duplikat username
+    return this.users.some((user) => user.username.toLowerCase() === userData.username.toLowerCase());
   }
 
   getUsers() {
