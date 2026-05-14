@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --font-poppins: "Poppins", sans-serif;
+
+  --color-lotask-background-grey: rgb(236 240 246);
+  --color-dark-slate: #1e293b;
+  --color-darker-slate: #0f172a;
+
+  --shadow-c-3xl: 8px 8px 0px;
+  --shadow-c-2xl: 6px 6px 0px;
+  --shadow-c-xl: 5px 5px 0px;
+  --shadow-c-lg: 4px 4px 0px;
+  --shadow-c-md: 3px 3px 0px;
+  --shadow-c-xs: 2px 2px 0px;
+}
