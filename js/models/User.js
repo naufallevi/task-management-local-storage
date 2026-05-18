@@ -36,7 +36,7 @@ class User {
     // Proses pemeriksaan data username pada localstorage
     const userExist = this.users.some((user) => user.username.toLowerCase() === usernameByInput.toLowerCase());
     // console.info(userExist);
-    
+
     // Proses pengembalian data ke signIn.js (controller)
     if (userExist) {
       localStorage.setItem("isLoggedIn", usernameByInput);
