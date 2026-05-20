@@ -14,3 +14,17 @@
   --shadow-c-md: 3px 3px 0px;
   --shadow-c-xs: 2px 2px 0px;
 }
+
+@layer components {
+    .smooth-transition-150 {
+    @apply transition-all duration-150 ease-in-out;
+  }
+
+  .smooth-transition-300 {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .smooth-transition-600 {
+    @apply transition-all duration-600 ease-in-out;
+  }
+}
