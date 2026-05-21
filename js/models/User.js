@@ -1,16 +1,18 @@
-// Mengurus Bussiness Logic
+// Mengurus Business Logic
 // Mengelola data seperti CRUD
 
 class User {
   constructor() {
-    this.users = this.getUsers() || [];
+    this.users = this.getUsers();
   }
 
-  saveUser(userData) {
+  registerUser(userData) {
     // Proses pemeriksaan data username pada localstorage
-    const validationUserData = this.isUserExist(userData);
+    const existingUser = this.users.some(
+      (user) => user.username.toLowerCase() === userData.username.toLowerCase(),
+    );
 
-    if (validationUserData) {
+    if (existingUser) {
       return {
         success: false,
         message: `Username ${userData.username} already exists`,
@@ -18,7 +20,7 @@ class User {
     }
 
     const newUser = {
-      id: Date.now(),
+      id: crypto.randomUUID(),
       ...userData,
     };
 
@@ -32,29 +34,40 @@ class User {
     };
   }
 
-  signInUser(usernameByInput) {
+  signInUser(userDataByInput) {
     // Proses pemeriksaan data username pada localstorage
-    const userExist = this.users.some((user) => user.username.toLowerCase() === usernameByInput.toLowerCase());
-    // console.info(userExist);
+    const existingUser = this.users.find(
+      (user) => user.username.toLowerCase() === userDataByInput.username.toLowerCase(),
+    );
+
+    console.info(existingUser);
 
     // Proses pengembalian data ke signIn.js (controller)
-    if (userExist) {
-      localStorage.setItem("isLoggedIn", usernameByInput);
-      return {
-        success: true,
-        usernameByInput,
-      };
-    } else {
+    if (!existingUser) {
       return {
         success: false,
-        message: `Username {${usernameByInput}} is not available`,
+        message: `Username ${userDataByInput.username} not found`,
       };
     }
-  }
 
-  isUserExist(userData) {
-    // Validasi duplikat username
-    return this.users.some((user) => user.username.toLowerCase() === userData.username.toLowerCase());
+    if (existingUser.password !== userDataByInput.password) {
+      return {
+        success: false,
+        message: "Incorrect password! Please try again",
+      };
+    }
+
+      const currentUserData = {
+        id: existingUser.id,
+        username: existingUser.username,
+      };
+
+      localStorage.setItem("currentUser", JSON.stringify(currentUserData));
+
+      return {
+        success: true,
+        username: userDataByInput.username,
+      };
   }
 
   getUsers() {

@@ -10,9 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputUsername = formAddUser.querySelector("#username").value.trim();
     const inputPassword = formAddUser.querySelector("#password").value;
 
-    if (!validateForm(inputUsername, inputPassword)) {
-      return;
-    }
+    // Validasi value form
+    if (!validateForm(inputUsername, inputPassword)) return;
 
     const hashedPassword = CryptoJS.SHA256(inputPassword).toString();
 
@@ -22,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
       created_at: nowTime(),
     };
 
-    const result = userManager.saveUser(userData);
+    const result = userManager.registerUser(userData);
 
     if (result.success) {
       Swal.fire({
@@ -50,6 +49,15 @@ document.addEventListener("DOMContentLoaded", () => {
         title: "Warning",
         icon: "warning",
         text: "Please enter the username!",
+      });
+      return false;
+    }
+
+    if (username.length < 3) {
+      Swal.fire({
+        title: "Warning",
+        icon: "warning",
+        text: "Username must be at least 3 characters long!",
       });
       return false;
     }
