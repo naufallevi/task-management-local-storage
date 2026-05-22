@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const taskWrapper = document.getElementById("taskWrapper");
   const taskWrapperEmpty = document.getElementById("taskWrapperEmpty");
 
+  const profileName = document.getElementById("profileName");
+  const userProfileData = JSON.parse(localStorage.getItem("currentUser")) || [];
+  profileName.innerText = userProfileData.username;
+
   function displayAllTasks(tasks = existingTasks) {
     if (tasks.length === 0) {
       console.info("Data kosong");
@@ -22,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const userFriendlyDate = formatDate(task.created_at);
 
         const itemTask = document.createElement("div");
-        itemTask.className = "flex justify-between bg-white p-5 w-full rounded-3xl";
+        // itemTask.className = "flex justify-between bg-lotask-white";
         itemTask.innerHTML = createItemTaskHTML(task, userFriendlyDate);
         taskWrapper.appendChild(itemTask);
 
@@ -47,79 +51,66 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function createItemTaskHTML(task, userFriendlyDate) {
+function createItemTaskHTML(task, userFriendlyDate) {
     return `
-                    <div class="flex justify-between bg-white p-5 w-full rounded-3xl">
-                        <div class="task-card flex flex-col gap-5">
-                            <div class="flex gap-3 items-center">
-                                <div
-                                    class="w-[50px] h-[50px] flex shrink-0 items-center justify-center bg-[#BDEBFF] rounded-full">
-                                    <img src="img/icons/ghost.svg" alt="icon">
-                                </div>
-                                <div class="flex flex-col">
-                                    <p class="font-bold text-lg leading-[27px]">${capitalizeFirstChar(task.taskName)}</p>
-                                    <p class="text-sm leading-[21px] text-taskia-grey">Created at ${userFriendlyDate}</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4 font-semibold text-sm leading-[21px]">
-                                <div class="flex gap-1 items-center">
-                                    <div class="flex shrink-0 w-5 h-5">
-                                        <img src="img/icons/layer.svg" alt="icon">
-                                    </div>
-                                    <p>${task.taskPriority}</p>
-                                </div>
+<div class="flex flex-col md:flex-row justify-between bg-lotask-white p-4 md:p-6 w-full border-2 border-darken-slate shadow-c-lg items-start md:items-center gap-4 md:gap-6">
+    <div class="task-card flex flex-col gap-3 md:gap-4 w-full">
+        <div class="flex gap-3 md:gap-4 items-start md:items-center">
+            <div class="w-12 h-12 md:w-14 md:h-14 flex shrink-0 items-center justify-center bg-lotask-yellow border-2 border-darken-slate shadow-c-xs mt-1 md:mt-0">
+                <img src="img/icons/ghost.svg" alt="icon" class="w-6 h-6 md:w-7 md:h-7">
+            </div>
+            <div class="flex flex-col">
+                <p class="font-extrabold text-xl md:text-2xl text-dark-slate tracking-wide wrap-break-word">${capitalizeFirstChar(task.taskName)}</p>
+                <p class="text-xs md:text-sm font-bold text-dark-slate/60 mt-0.5">Created at ${userFriendlyDate}</p>
+            </div>
+        </div>
+        
+        <div class="flex flex-wrap gap-2 md:gap-3 font-bold text-xs md:text-sm">
+            <div class="flex gap-1.5 items-center px-2.5 py-1.5 md:px-3 border-2 border-darken-slate bg-lotask-white shadow-c-xs">
+                <div class="flex shrink-0 w-3 h-3 md:w-4 md:h-4">
+                    <i class="fa-solid fa-signal"></i>
+                </div>
+                <p class="uppercase">${task.taskPriority}</p>
+            </div>
 
-                                ${
-                                  task.isCompleted === false
-                                    ? `
-                                <div class="flex gap-1 items-center">
-                                    <div class="flex shrink-0 w-5 h-5">
-                                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M4.29163 2.16663V18.8333" stroke="currentColor" stroke-width="2"
-                                                stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path
-                                                d="M4.29163 3.83337H13.625C15.875 3.83337 16.375 5.08337 14.7916 6.66671L13.7916 7.66671C13.125 8.33337 13.125 9.41671 13.7916 10L14.7916 11C16.375 12.5834 15.7916 13.8334 13.625 13.8334H4.29163"
-                                                stroke="currentColor" stroke-width="2" stroke-miterlimit="10"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </div>
-                                    <p>In Progress</p>
-                                </div>
-                                `
-                                    : `
-                                <div class="flex gap-1 items-center text-taskia-green">
-                                    <div class="flex shrink-0 w-5 h-5">
-                                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M4.29163 2.16663V18.8333" stroke="currentColor" stroke-width="2"
-                                                stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path
-                                                d="M4.29163 3.83337H13.625C15.875 3.83337 16.375 5.08337 14.7916 6.66671L13.7916 7.66671C13.125 8.33337 13.125 9.41671 13.7916 10L14.7916 11C16.375 12.5834 15.7916 13.8334 13.625 13.8334H4.29163"
-                                                stroke="currentColor" stroke-width="2" stroke-miterlimit="10"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </div>
-                                    <p>Completed</p>
-                                </div>
-                                `
-                                }
-                            </div>
-                        </div>
-                        <div class="flex flex-row items-center gap-x-3">
-                            <a href="#" id="deleteTask-${task.id}"
-                                class="my-auto font-semibold text-taskia-red border border-taskia-red p-[12px_20px] h-12 rounded-full">Delete</a>
-                            ${
-                                task.isCompleted === false ? `
-                            <a href="#" id="completeTask-${task.id}"
-                                class="flex gap-[10px] justify-center items-center text-white p-[12px_20px] h-12 font-semibold bg-gradient-to-b from-[#977FFF] to-[#6F4FFF] rounded-full w-full border border-taskia-background-grey">Complete</a>
-                                ` : `
-                            <a href="#" id="completeTask-${task.id}"
-                                class="hidden">Complete</a>
-                                `
-                            }
-                        </div>
-                    </div>
+            ${
+              task.isCompleted === false
+                ? `
+            <div class="flex gap-1.5 items-center px-2.5 py-1.5 md:px-3 border-2 border-darken-slate bg-lotask-orange shadow-c-xs">
+                <div class="flex shrink-0 w-3 h-3 md:w-4 md:h-4 text-dark-slate">
+                    <i class="fa-solid fa-spinner"></i>
+                </div>
+                <p class="uppercase text-dark-slate">In Progress</p>
+            </div>
+            `
+                : `
+            <div class="flex gap-1.5 items-center px-2.5 py-1.5 md:px-3 border-2 border-darken-slate bg-lotask-green shadow-c-xs">
+                <div class="flex shrink-0 w-3 h-3 md:w-4 md:h-4 text-dark-slate">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <p class="uppercase text-dark-slate">Completed</p>
+            </div>
+            `
+            }
+        </div>
+    </div>
+
+    <div class="flex flex-row items-center w-full md:w-auto gap-3 md:gap-x-4 shrink-0 mt-2 md:mt-0">
+        <a href="#" id="deleteTask-${task.id}"
+            class="flex-1 md:flex-none justify-center flex items-center font-extrabold text-dark-slate bg-[#FF6B6B] border-2 border-darken-slate px-4 md:px-6 h-10 md:h-12 text-sm md:text-base shadow-c-xs hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none uppercase tracking-wide smooth-transition-150">Delete</a>
+        
+        ${
+          task.isCompleted === false
+            ? `
+        <a href="#" id="completeTask-${task.id}"
+            class="flex-1 md:flex-none justify-center flex items-center text-dark-slate px-4 md:px-6 h-10 md:h-12 text-sm md:text-base font-extrabold bg-lotask-blue border-2 border-darken-slate shadow-c-xs hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none uppercase tracking-wide smooth-transition-150">Complete</a>
+            `
+            : `
+        <a href="#" id="completeTask-${task.id}" class="hidden">Complete</a>
+            `
+        }
+    </div>
+</div>
     `;
   }
 

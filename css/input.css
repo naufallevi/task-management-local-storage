@@ -7,12 +7,31 @@
   --color-dark-slate: #1e293b;
   --color-darker-slate: #0f172a;
 
-  --shadow-c-3xl: 8px 8px 0px;
-  --shadow-c-2xl: 6px 6px 0px;
-  --shadow-c-xl: 5px 5px 0px;
-  --shadow-c-lg: 4px 4px 0px;
-  --shadow-c-md: 3px 3px 0px;
-  --shadow-c-xs: 2px 2px 0px;
+  --shadow-c-3xl: 8px 8px 0px #0f172a;
+  --shadow-c-2xl: 6px 6px 0px #0f172a;
+  --shadow-c-xl: 5px 5px 0px #0f172a;
+  --shadow-c-lg: 4px 4px 0px #0f172a;
+  --shadow-c-md: 3px 3px 0px #0f172a;
+  --shadow-c-sm: 2px 2px 0px #0f172a;
+  --shadow-c-xs: 1px 1px 0px #0f172a;
+
+  /* Custom Colors untuk Neobrutalism */
+  /* --color-lotask-black: #1D1D1F; */
+  --color-lotask-white: #FAFAFA;
+  --color-lotask-orange: #FF7A00;
+  --color-lotask-orange: #FF7A00;
+  --color-lotask-blue: #0096D5;
+  --color-lotask-yellow: #F4E03C;
+  --color-lotask-green: #A8FF93;
+
+  /* Custom Hard Shadows */
+  --shadow-neo: 4px 4px 0px #000000;
+  --shadow-neo-sm: 2px 2px 0px #000000;
+  --shadow-neo-lg: 8px 8px 0px #000000;
+
+  /* Custom Spacing (menyesuaikan template asli Anda) */
+  --spacing-7\.5: 30px;
+  --spacing-4\.5: 18px;
 }
 
 @layer components {
@@ -27,4 +46,13 @@
   .smooth-transition-600 {
     @apply transition-all duration-600 ease-in-out;
   }
+}
+
+/* Custom Utility untuk menghilangkan scrollbar tapi tetap bisa di-scroll */
+@utility no-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

@@ -3,185 +3,173 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./output.css" rel="stylesheet" />
+    <link href="./css/output.css" rel="stylesheet" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
   </head>
 
-  <body class="text-taskia-black font-poppins">
-    <section id="Dashboard" class="flex">
+  <body class="text-dark-slate font-poppins bg-lotask-background-grey antialiased">
+    <section id="Dashboard" class="flex flex-col lg:flex-row min-h-screen">
       <div
         id="Sidebar"
-        class="w-[280px] flex flex-col gap-[30px] p-[30px] shrink-0 h-screen overflow-y-scroll no-scrollbar"
+        class="w-full lg:w-70 flex flex-col gap-5 lg:gap-7.5 p-5 lg:p-7.5 shrink-0 lg:h-screen lg:overflow-y-auto no-scrollbar bg-lotask-white border-b-4 lg:border-b-0 lg:border-r-4 border-darken-slate"
       >
-        <div class="flex justify-center">
-          <img src="img/logo.svg" alt="logo" />
+        <div class="flex justify-center py-2 lg:py-4 bg-lotask-white">
+          <img src="img/logo-lotask.webp" alt="logo" class="w-40 lg:w-50" />
         </div>
-        <div class="general-menu flex flex-col gap-[18px]">
-          <h3 class="font-semibold text-sm leading-[21px]">GENERAL</h3>
-          <a
-            href="dashboard-overview.html"
-            class="flex items-center gap-[10px] p-[12px_16px] h-12 rounded-full border border-taskia-background-grey"
-          >
-            <div class="w-6 h-6">
-              <img src="img/icons/3dcube.svg" alt="icon" />
-            </div>
-            <p class="font-semibold">Overview</p>
-          </a>
-          <a
-            href="dashboard-my-people.html"
-            class="flex items-center gap-[10px] p-[12px_16px] h-12 rounded-full border border-taskia-background-grey"
-          >
-            <div class="w-6 h-6">
-              <img src="img/icons/profile-2user.svg" alt="icon" />
-            </div>
-            <p class="font-semibold">My People</p>
-          </a>
-          <a
-            href="tasks.html"
-            class="flex items-center gap-[10px] p-[12px_16px] h-12 rounded-full bg-taskia-light-orange drop-shadow-[0_10px_20px_rgba(255,216,141,0.50)]"
-          >
-            <div class="w-6 h-6">
-              <img src="img/icons/note-favorite.svg" alt="icon" />
-            </div>
-            <p class="font-semibold">Manage Task</p>
-          </a>
-          <a
-            href="dashboard-rewards.html"
-            class="flex items-center gap-[10px] p-[12px_16px] h-12 rounded-full border border-taskia-background-grey"
-          >
-            <div class="w-6 h-6">
-              <img src="img/icons/crown.svg" alt="icon" />
-            </div>
-            <p class="font-semibold">Rewards</p>
-          </a>
-          <a
-            href="dashboard-ai-customs.html"
-            class="flex items-center gap-[10px] p-[12px_16px] h-12 rounded-full border border-taskia-background-grey"
-          >
-            <div class="w-6 h-6">
-              <img src="img/icons/hierarchy-square-3.svg" alt="icon" />
-            </div>
-            <p class="font-semibold">AI Customs</p>
-          </a>
+
+        <div class="general-menu flex flex-col gap-3 lg:gap-4.5">
+          <h3 class="font-extrabold text-xs lg:text-sm leading-5.25 uppercase tracking-wider text-dark-slate/60">
+            GENERAL
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+            <a
+              href="tasks.html"
+              class="flex items-center gap-2.5 p-[12px_16px] h-12 border-2 border-darken-slate bg-lotask-orange shadow-c-md"
+            >
+              <div class="w-6 h-6 shrink-0">
+                <i class="fa-solid fa-list-check"></i>
+              </div>
+              <p class="font-extrabold text-dark-slate">Manage Task</p>
+            </a>
+            <a
+              href="#"
+              class="flex items-center gap-2.5 p-[12px_16px] h-12 border-2 border-darken-slate bg-lotask-white hover:bg-lotask-yellow/30 shadow-c-sm smooth-transition-150"
+            >
+              <div class="w-6 h-6 shrink-0">
+                <i class="fa-solid fa-diagram-project"></i>
+              </div>
+              <p class="font-extrabold text-dark-slate">Manage Project</p>
+            </a>
+          </div>
         </div>
-        <hr class="text-taskia-background-grey" />
-        <div class="general-menu flex flex-col gap-[18px]">
-          <h3 class="font-semibold text-sm leading-[21px]">OTHERS</h3>
-          <a
-            href="dashboard-settings.html"
-            class="flex items-center gap-[10px] p-[12px_16px] h-12 rounded-full border border-taskia-background-grey"
-          >
-            <div class="w-6 h-6">
-              <img src="img/icons/setting-2.svg" alt="icon" />
-            </div>
-            <p class="font-semibold">Settings</p>
-          </a>
-          <a
-            href="dashboard-help-center.html"
-            class="flex items-center gap-[10px] p-[12px_16px] h-12 rounded-full border border-taskia-background-grey"
-          >
-            <div class="w-6 h-6">
-              <img src="img/icons/message-question.svg" alt="icon" />
-            </div>
-            <p class="font-semibold">Help Center</p>
-          </a>
-          <a
-            href="signin.html"
-            class="flex items-center gap-[10px] p-[12px_16px] h-12 rounded-full border border-taskia-background-grey"
-          >
-            <div class="w-6 h-6">
-              <img src="img/icons/forbidden-2.svg" alt="icon" />
-            </div>
-            <p class="font-semibold">Logout</p>
-          </a>
+
+        <hr class="border border-darken-slate hidden lg:block" />
+
+        <div class="general-menu flex flex-col gap-3 lg:gap-4.5">
+          <h3 class="font-extrabold text-xs lg:text-sm leading-5.25 uppercase tracking-wider text-dark-slate/60">
+            OTHERS
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+            <a
+              href="#"
+              class="flex items-center gap-2.5 p-[12px_16px] h-12 border-2 border-darken-slate bg-lotask-white hover:bg-lotask-yellow/30 shadow-c-sm smooth-transition-150"
+            >
+              <div class="w-6 h-6 shrink-0">
+                <i class="fa-solid fa-user"></i>
+              </div>
+              <p class="font-bold text-dark-slate">User Profile</p>
+            </a>
+            <a
+              href="#"
+              class="flex items-center gap-2.5 p-[12px_16px] h-12 border-2 border-darken-slate bg-lotask-white hover:bg-lotask-yellow/30 shadow-c-sm smooth-transition-150"
+            >
+              <div class="w-6 h-6 shrink-0">
+                <i class="fa-solid fa-right-from-bracket"></i>
+              </div>
+              <p class="font-bold text-dark-slate">Logout</p>
+            </a>
+          </div>
         </div>
       </div>
+
+      <div class="flex items-center gap-3 my-8 mx-4 lg:hidden">
+        <div class="w-4 h-4 bg-black"></div>
+        <div class="flex-1 border-t-4 border-black"></div>
+        <div class="w-4 h-4 bg-black"></div>
+      </div>
+
       <div
         id="Content"
-        class="flex flex-col bg-taskia-background-grey rounded-l-[60px] w-full h-screen overflow-y-scroll p-[50px] gap-[30px]"
+        class="flex flex-col bg-lotask-background-grey w-full lg:h-screen lg:overflow-y-auto p-5 lg:p-10 gap-5 lg:gap-7.5 lg:border-l-2 border-darken-slate"
       >
-        <div class="dashboard-nav bg-white flex justify-between items-center w-full p-4 rounded-[18px]">
+        <div
+          class="bg-lotask-white flex flex-col-reverse sm:flex-row justify-between items-center w-full p-4 border-2 border-darken-slate shadow-c-lg gap-4 mb-10 lg:mb-0"
+        >
           <div
-            class="dashboard-search flex items-center p-[12px_20px] rounded-full border border-taskia-background-grey w-[400px] h-12 focus-within:ring-2 focus-within:ring-taskia-purple"
+            class="dashboard-search flex items-center p-[12px_20px] bg-lotask-white border-2 border-darken-slate w-full sm:w-100 h-12 focus-within:ring-2 focus-within:ring-lotask-blue shadow-c-sm smooth-transition-300"
           >
             <input
               type="text"
-              class="font-semibold placeholder:text-taskia-grey placeholder:font-normal focus:outline-none w-full"
+              class="font-semibold text-dark-slate placeholder:text-dark-slate/50 placeholder:font-normal focus:outline-none w-full bg-transparent"
               placeholder="Search by report name..."
               name="name"
               required
             />
-            <button class="ml-[10px] w-6 h-6 flex items-center justify-center">
-              <img src="img/icons/search-normal.svg" alt="icon" />
+            <button class="ml-2.5 w-6 h-6 flex items-center justify-center shrink-0 cursor-pointer">
+              <i class="fa-solid fa-search"></i>
             </button>
           </div>
-          <div class="flex gap-[30px] items-center">
-            <div class="flex gap-3 items-center">
-              <a
-                href=""
-                class="flex justify-center items-center w-12 h-12 rounded-full border border-taskia-background-grey"
-              >
-                <img src="img/icons/direct.svg" alt="icon" />
-              </a>
-              <a
-                href=""
-                class="flex justify-center items-center w-12 h-12 rounded-full border border-taskia-background-grey"
-              >
-                <img src="img/icons/activity.svg" alt="icon" />
-              </a>
-            </div>
-            <div class="flex h-12 border-x border-[0.5px] border-taskia-background-grey"></div>
+
+          <div class="flex gap-7.5 items-center w-full sm:w-auto justify-end">
             <div class="flex gap-3 items-center">
               <div class="*:text-right flex flex-col">
-                <p class="text-taskia-grey text-sm w-full">Howdy,</p>
-                <p class="font-bold">Jannellia</p>
+                <p class="text-dark-slate/60 text-sm w-full font-medium">Hi,</p>
+                <p id="profileName" class="font-extrabold text-base lg:text-lg text-lotask-darken-slate"></p>
               </div>
-              <div class="w-12 h-12 rounded-full overflow-hidden">
-                <img src="img/photo.png" class="object-cover h-full w-full" alt="photo" />
+              <div class="w-12 h-12 lg:w-14 lg:h-14 border-2 border-darken-slate overflow-hidden shadow-c-sm shrink-0">
+                <img src="img/user-profile.webp" class="object-cover h-full w-full" alt="photo profile" />
               </div>
             </div>
           </div>
         </div>
-        <div class="flex flex-col gap-[30px]">
-          <div class="content-header flex justify-between items-center">
+
+        <div class="flex flex-col gap-5 lg:gap-7.5">
+          <div class="content-header flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h1 class="font-extrabold text-[30px] leading-[45px]">Manage Task</h1>
-              <p class="leading-[21px] text-sm">Set the goals to grow your company</p>
+              <h1 class="font-extrabold text-3xl lg:text-4xl leading-tight text-lotask-darken-slate text-shadow-lg">
+                Manage Task
+              </h1>
+              <p class="leading-5.25 text-sm lg:text-base mt-1 font-medium text-dark-slate/70">
+                Set the goals to grow your company
+              </p>
             </div>
-            <div class="flex gap-3 items-center">
+            <div class="flex gap-3 items-center w-full sm:w-auto">
               <a
                 id="btnAddTaskHeader"
                 href="add-task.html"
-                class="flex gap-[10px] justify-center items-center text-white p-[12px_20px] h-12 font-semibold bg-gradient-to-b from-[#977FFF] to-[#6F4FFF] rounded-full w-full border border-taskia-background-grey"
+                class="flex w-full sm:w-auto gap-2.5 justify-center items-center text-dark-slate p-[12px_24px] h-12 lg:h-14 font-extrabold bg-lotask-blue border-2 border-darken-slate shadow-c-lg hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-c-sm transition-all text-base lg:text-lg"
                 >Add New Task</a
               >
             </div>
           </div>
-          <!-- if task != 0 -->
-          <div class="flex flex-col gap-6" id="taskWrapper"></div>
-          <div class="flex justify-center items-center h-[420px] mx-auto" id="taskWrapperEmpty">
-            <div class="bg-white p-[30px] gap-[30px] rounded-[30px] w-[350px] shrink-0 flex flex-col items-center">
-              <div class="w-20 h-20 rounded-full bg-[#FEE7BA] flex shrink-0 items-center justify-center">
-                <img src="img/icons/note-favorite-dark-orange.svg" alt="icon" />
+
+          <div class="flex flex-col gap-4 lg:gap-6" id="taskWrapper"></div>
+
+          <div class="flex justify-center items-center py-10 lg:h-112.5 mx-auto mt-4 lg:mt-10" id="taskWrapperEmpty">
+            <div
+              class="bg-lotask-green p-6 lg:p-10 gap-5 lg:gap-7.5 border-4 border-darken-slate shadow-c-lg shrink-0 flex flex-col items-center w-full sm:w-100"
+            >
+              <div
+                class="w-20 h-20 lg:w-24 lg:h-24 border-4 border-darken-slate bg-lotask-orange flex shrink-0 items-center justify-center shadow-c-lg"
+              >
+                <img
+                  src="img/icons/note-favorite-dark-orange.svg"
+                  alt="icon"
+                  class="w-10 h-10 lg:w-12 lg:h-12 brightness-0"
+                />
               </div>
-              <div class="flex flex-col gap-[10px] text-center">
-                <p class="font-bold text-xl leading-[30px]">Oops! No Task</p>
-                <p class="text-sm text-taskia-grey leading-6">
-                  You need to create some tasks for<br />your employees to work on
+              <div class="flex flex-col gap-2 text-center">
+                <p class="font-extrabold text-2xl lg:text-3xl leading-tight text-lotask-darken-slate">Oops! No Task</p>
+                <p class="text-sm lg:text-base text-dark-slate font-medium leading-relaxed">
+                  You need to create some tasks for your employees to work on.
                 </p>
               </div>
-              <div class="flex gap-2 w-full">
-                <button class="p-[12px_20px] rounded-full border border-taskia-black w-full font-semibold">
+              <div class="flex flex-col sm:flex-row gap-3 lg:gap-4 w-full mt-2">
+                <button
+                  class="p-[12px_20px] h-12 border-2 border-darken-slate bg-lotask-white text-dark-slate w-full font-bold shadow-c-sm hover:bg-lotask-yellow smooth-transition-150"
+                >
                   Import
                 </button>
                 <a
                   href="add-task.html"
-                  class="p-[12px_20px] bg-gradient-to-b from-[#977FFF] to-[#6F4FFF] rounded-full w-full border border-taskia-background-grey font-semibold text-white text-center"
-                  >Add New</a
+                  class="p-[12px_20px] h-12 bg-lotask-blue border-2 border-darken-slate text-dark-slate w-full font-bold text-center shadow-c-sm hover:bg-lotask-white flex items-center justify-center smooth-transition-150"
                 >
+                  Add New
+                </a>
               </div>
             </div>
           </div>
