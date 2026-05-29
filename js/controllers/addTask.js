@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const formAddTask = document.getElementById("taskForm");
   const taskManager = new Task();
 
+  const profileName = document.getElementById("profileName");
+  const userProfileData = JSON.parse(localStorage.getItem("currentUser")) || [];
+  profileName.innerText = userProfileData.username;
+
   formAddTask.addEventListener("submit", (event) => {
     event.preventDefault();
 

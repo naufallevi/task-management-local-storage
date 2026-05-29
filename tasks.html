@@ -8,14 +8,16 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
   </head>
 
   <body class="text-dark-slate font-poppins bg-lotask-background-grey antialiased">
     <section id="Dashboard" class="flex flex-col lg:flex-row min-h-screen">
+      <!-- START Sidebar -->
       <div
         id="Sidebar"
-        class="w-full lg:w-70 flex flex-col gap-5 lg:gap-7.5 p-5 lg:p-7.5 shrink-0 lg:h-screen lg:overflow-y-auto no-scrollbar bg-lotask-white border-b-4 lg:border-b-0 lg:border-r-4 border-darken-slate"
+        class="w-full lg:w-70 flex flex-col gap-5 lg:gap-7.5 p-5 lg:p-7.5 shrink-0 lg:h-screen lg:overflow-y-auto no-scrollbar bg-lotask-white border-b-4 lg:border-b-0 lg:border-r-4 border-darker-slate"
       >
         <div class="flex justify-center py-2 lg:py-4 bg-lotask-white">
           <img src="img/logo-lotask.webp" alt="logo" class="w-40 lg:w-50" />
@@ -28,7 +30,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
             <a
               href="tasks.html"
-              class="flex items-center gap-2.5 p-[12px_16px] h-12 border-2 border-darken-slate bg-lotask-orange shadow-c-md"
+              class="flex items-center gap-2.5 p-[12px_16px] h-12 border-2 border-darker-slate bg-lotask-orange shadow-c-md"
             >
               <div class="w-6 h-6 shrink-0">
                 <i class="fa-solid fa-list-check"></i>
@@ -37,7 +39,7 @@
             </a>
             <a
               href="#"
-              class="flex items-center gap-2.5 p-[12px_16px] h-12 border-2 border-darken-slate bg-lotask-white hover:bg-lotask-yellow/30 shadow-c-sm smooth-transition-150"
+              class="flex items-center gap-2.5 p-[12px_16px] h-12 border-2 border-darker-slate bg-lotask-white hover:bg-lotask-yellow/30 shadow-c-sm smooth-transition-150"
             >
               <div class="w-6 h-6 shrink-0">
                 <i class="fa-solid fa-diagram-project"></i>
@@ -47,7 +49,7 @@
           </div>
         </div>
 
-        <hr class="border border-darken-slate hidden lg:block" />
+        <hr class="border border-darker-slate hidden lg:block" />
 
         <div class="general-menu flex flex-col gap-3 lg:gap-4.5">
           <h3 class="font-extrabold text-xs lg:text-sm leading-5.25 uppercase tracking-wider text-dark-slate/60">
@@ -56,7 +58,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
             <a
               href="#"
-              class="flex items-center gap-2.5 p-[12px_16px] h-12 border-2 border-darken-slate bg-lotask-white hover:bg-lotask-yellow/30 shadow-c-sm smooth-transition-150"
+              class="flex items-center gap-2.5 p-[12px_16px] h-12 border-2 border-darker-slate bg-lotask-white hover:bg-lotask-yellow/30 shadow-c-sm smooth-transition-150"
             >
               <div class="w-6 h-6 shrink-0">
                 <i class="fa-solid fa-user"></i>
@@ -65,7 +67,7 @@
             </a>
             <a
               href="#"
-              class="flex items-center gap-2.5 p-[12px_16px] h-12 border-2 border-darken-slate bg-lotask-white hover:bg-lotask-yellow/30 shadow-c-sm smooth-transition-150"
+              class="flex items-center gap-2.5 p-[12px_16px] h-12 border-2 border-darker-slate bg-lotask-white hover:bg-lotask-yellow/30 shadow-c-sm smooth-transition-150"
             >
               <div class="w-6 h-6 shrink-0">
                 <i class="fa-solid fa-right-from-bracket"></i>
@@ -75,6 +77,7 @@
           </div>
         </div>
       </div>
+      <!-- END Sidebar -->
 
       <div class="flex items-center gap-3 my-8 mx-4 lg:hidden">
         <div class="w-4 h-4 bg-black"></div>
@@ -84,13 +87,14 @@
 
       <div
         id="Content"
-        class="flex flex-col bg-lotask-background-grey w-full lg:h-screen lg:overflow-y-auto p-5 lg:p-10 gap-5 lg:gap-7.5 lg:border-l-2 border-darken-slate"
+        class="flex flex-col bg-lotask-background-grey w-full lg:h-screen lg:overflow-y-auto p-5 lg:p-10 gap-5 lg:gap-7.5 lg:border-l-2 border-darker-slate"
       >
+        <!-- START Search and Profile Bar -->
         <div
-          class="bg-lotask-white flex flex-col-reverse sm:flex-row justify-between items-center w-full p-4 border-2 border-darken-slate shadow-c-lg gap-4 mb-10 lg:mb-0"
+          class="bg-lotask-white flex flex-col-reverse sm:flex-row justify-between items-center w-full p-4 border-2 border-darker-slate shadow-c-lg gap-4 mb-10 lg:mb-0"
         >
           <div
-            class="dashboard-search flex items-center p-[12px_20px] bg-lotask-white border-2 border-darken-slate w-full sm:w-100 h-12 focus-within:ring-2 focus-within:ring-lotask-blue shadow-c-sm smooth-transition-300"
+            class="dashboard-search flex items-center p-[12px_20px] bg-lotask-white border-2 border-darker-slate w-full sm:w-100 h-12 focus-within:ring-2 focus-within:ring-lotask-blue shadow-c-sm smooth-transition-300"
           >
             <input
               type="text"
@@ -108,19 +112,20 @@
             <div class="flex gap-3 items-center">
               <div class="*:text-right flex flex-col">
                 <p class="text-dark-slate/60 text-sm w-full font-medium">Hi,</p>
-                <p id="profileName" class="font-extrabold text-base lg:text-lg text-lotask-darken-slate"></p>
+                <p id="profileName" class="font-extrabold text-base lg:text-lg text-lotask-darker-slate"></p>
               </div>
-              <div class="w-12 h-12 lg:w-14 lg:h-14 border-2 border-darken-slate overflow-hidden shadow-c-sm shrink-0">
+              <div class="w-12 h-12 lg:w-14 lg:h-14 border-2 border-darker-slate overflow-hidden shadow-c-sm shrink-0">
                 <img src="img/user-profile.webp" class="object-cover h-full w-full" alt="photo profile" />
               </div>
             </div>
           </div>
         </div>
+        <!-- END Search and Profile Bar -->
 
         <div class="flex flex-col gap-5 lg:gap-7.5">
           <div class="content-header flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h1 class="font-extrabold text-3xl lg:text-4xl leading-tight text-lotask-darken-slate text-shadow-lg">
+              <h1 class="font-extrabold text-3xl lg:text-4xl leading-tight text-lotask-darker-slate text-shadow-lg">
                 Manage Task
               </h1>
               <p class="leading-5.25 text-sm lg:text-base mt-1 font-medium text-dark-slate/70">
@@ -131,7 +136,7 @@
               <a
                 id="btnAddTaskHeader"
                 href="add-task.html"
-                class="flex w-full sm:w-auto gap-2.5 justify-center items-center text-dark-slate p-[12px_24px] h-12 lg:h-14 font-extrabold bg-lotask-blue border-2 border-darken-slate shadow-c-lg hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-c-sm transition-all text-base lg:text-lg"
+                class="flex w-full sm:w-auto gap-2.5 justify-center items-center text-dark-slate p-[12px_24px] h-12 lg:h-14 font-extrabold bg-lotask-blue border-2 border-darker-slate shadow-c-lg hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-c-sm transition-all text-base lg:text-lg"
                 >Add New Task</a
               >
             </div>
@@ -141,10 +146,10 @@
 
           <div class="flex justify-center items-center py-10 lg:h-112.5 mx-auto mt-4 lg:mt-10" id="taskWrapperEmpty">
             <div
-              class="bg-lotask-green p-6 lg:p-10 gap-5 lg:gap-7.5 border-4 border-darken-slate shadow-c-lg shrink-0 flex flex-col items-center w-full sm:w-100"
+              class="bg-lotask-green p-6 lg:p-10 gap-5 lg:gap-7.5 border-4 border-darker-slate shadow-c-lg shrink-0 flex flex-col items-center w-full sm:w-100"
             >
               <div
-                class="w-20 h-20 lg:w-24 lg:h-24 border-4 border-darken-slate bg-lotask-orange flex shrink-0 items-center justify-center shadow-c-lg"
+                class="w-20 h-20 lg:w-24 lg:h-24 border-4 border-darker-slate bg-lotask-orange flex shrink-0 items-center justify-center shadow-c-lg"
               >
                 <img
                   src="img/icons/note-favorite-dark-orange.svg"
@@ -153,20 +158,20 @@
                 />
               </div>
               <div class="flex flex-col gap-2 text-center">
-                <p class="font-extrabold text-2xl lg:text-3xl leading-tight text-lotask-darken-slate">Oops! No Task</p>
+                <p class="font-extrabold text-2xl lg:text-3xl leading-tight text-lotask-darker-slate">Oops! No Task</p>
                 <p class="text-sm lg:text-base text-dark-slate font-medium leading-relaxed">
                   You need to create some tasks for your employees to work on.
                 </p>
               </div>
               <div class="flex flex-col sm:flex-row gap-3 lg:gap-4 w-full mt-2">
                 <button
-                  class="p-[12px_20px] h-12 border-2 border-darken-slate bg-lotask-white text-dark-slate w-full font-bold shadow-c-sm hover:bg-lotask-yellow smooth-transition-150"
+                  class="p-[12px_20px] h-12 border-2 border-darker-slate bg-lotask-white text-dark-slate w-full font-bold shadow-c-sm hover:bg-lotask-yellow smooth-transition-150"
                 >
                   Import
                 </button>
                 <a
                   href="add-task.html"
-                  class="p-[12px_20px] h-12 bg-lotask-blue border-2 border-darken-slate text-dark-slate w-full font-bold text-center shadow-c-sm hover:bg-lotask-white flex items-center justify-center smooth-transition-150"
+                  class="p-[12px_20px] h-12 bg-lotask-blue border-2 border-darker-slate text-dark-slate w-full font-bold text-center shadow-c-sm hover:bg-lotask-white flex items-center justify-center smooth-transition-150"
                 >
                   Add New
                 </a>
