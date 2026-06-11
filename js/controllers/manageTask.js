@@ -14,12 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function displayAllTasks(tasks = existingTasks) {
     if (tasks.length === 0) {
-      console.info("Data kosong");
+      // console.info("Data kosong");
       taskWrapper.className = "hidden";
       taskWrapperEmpty.className = "flex justify-center items-center h-[420px] mx-auto";
     } else {
+      // console.info("Data ada dan siap ditampilkan");
       taskWrapper.innerHTML = "";
-      console.info("Data ada dan siap ditampilkan");
       taskWrapperEmpty.className = "hidden";
 
       tasks.forEach((task) => {
@@ -44,20 +44,20 @@ document.addEventListener("DOMContentLoaded", () => {
           //   console.info(task.id);
           myTasks.deleteTask(task.id);
 
-          const updateData = myTasks.getTasks();
-          displayAllTasks(updateData);
+          const deleteData = myTasks.getTasks();
+          displayAllTasks(deleteData);
         });
       });
     }
   }
 
-function createItemTaskHTML(task, userFriendlyDate) {
+  function createItemTaskHTML(task, userFriendlyDate) {
     return `
 <div class="flex flex-col md:flex-row justify-between bg-lotask-white p-4 md:p-6 w-full border-2 border-darken-slate shadow-c-lg items-start md:items-center gap-4 md:gap-6">
     <div class="task-card flex flex-col gap-3 md:gap-4 w-full">
         <div class="flex gap-3 md:gap-4 items-start md:items-center">
             <div class="w-12 h-12 md:w-14 md:h-14 flex shrink-0 items-center justify-center bg-lotask-yellow border-2 border-darken-slate shadow-c-xs mt-1 md:mt-0">
-                <img src="img/icons/ghost.svg" alt="icon" class="w-6 h-6 md:w-7 md:h-7">
+                <i class="fa-solid fa-tasks"></i>
             </div>
             <div class="flex flex-col">
                 <p class="font-extrabold text-xl md:text-2xl text-dark-slate tracking-wide wrap-break-word">${capitalizeFirstChar(task.taskName)}</p>
