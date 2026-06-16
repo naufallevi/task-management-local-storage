@@ -1,19 +1,22 @@
 // Penghubung antara UI dan model Task
 
 document.addEventListener("DOMContentLoaded", () => {
-  const formAddTask = document.getElementById("taskForm");
   const taskManager = new Task();
 
   const profileName = document.getElementById("profileName");
-  const userProfileData = JSON.parse(localStorage.getItem("currentUser")) || [];
-  profileName.innerText = userProfileData.username;
-
+  const userProfileData = taskManager.getCurrentUser();
+  if (profileName && userProfileData.username) {
+    profileName.innerText = userProfileData.username;
+  }
+  
+  const formAddTask = document.getElementById("taskForm");
   formAddTask.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const taskData = {
       taskName: document.querySelector("#taskName").value,
       taskPriority: document.querySelector("#taskPriority").value,
+      userId: userProfileData.id,
       created_at: nowTime(),
       isCompleted_at: null,
     };

@@ -27,7 +27,13 @@ class Task {
     if (index !== -1) {
       this.tasks[index].isCompleted = true;
       this.updateLocalStorage();
+
+      return {
+        success: true,
+      };
     }
+
+    return { success: false, message: "Task not found" };
   }
 
   deleteTask(taskId) {
@@ -37,7 +43,13 @@ class Task {
       // this.tasks[index].isCompleted = true;
       this.tasks.splice(index, 1);
       this.updateLocalStorage();
+      
+      return {
+        success: true,
+      };
     }
+
+    return { success: false, message: "Task not found" };
   }
 
   updateLocalStorage() {
@@ -46,5 +58,21 @@ class Task {
 
   getTasks() {
     return JSON.parse(localStorage.getItem("tasks")) || [];
+  }
+
+  getTasksByUserId(userId, sortOrder = "DESC") {
+    const userTask = this.getTasks().filter((task) => task.userId === userId);
+
+    return userTask.sort((a, b) => {
+      if (sortOrder === "ASC") {
+        return a.created_at.localeCompare(b.created_at);
+      } else {
+        return b.created_at.localeCompare(a.created_at);
+      }
+    });
+  }
+
+  getCurrentUser() {
+    return JSON.parse(localStorage.getItem("currentUser")) || [];
   }
 }

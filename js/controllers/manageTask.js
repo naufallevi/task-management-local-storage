@@ -1,53 +1,118 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Membuat instance dari object Task
   const myTasks = new Task();
-  // Membuat variableuntuk mengambil tasks
-  const existingTasks = myTasks.getTasks();
-  // console.info(existingTasks);
+
+  const profileName = document.getElementById("profileName");
+  const userProfileData = JSON.parse(localStorage.getItem("currentUser")) || [];
+
+  if (profileName && userProfileData.username) profileName.innerText = userProfileData.username;
+
+  // Membuat variable untuk mengambil tasks
+  let existingTasks = myTasks.getTasksByUserId(userProfileData.id);
+  console.info(existingTasks);
+
+  // START Search Task
+  const searchTaskInput = document.getElementById("searchTask");
+
+  if (searchTaskInput) {
+    searchTaskInput.addEventListener("input", (event) => {
+      const valueSearchTask = event.target.value.toLowerCase().trim();
+      const filteredTask = existingTasks.filter((task) => task.taskName.toLowerCase().includes(valueSearchTask));
+
+      displayAllTasks(filteredTask);
+    });
+  }
+  // END Search Task
 
   const taskWrapper = document.getElementById("taskWrapper");
   const taskWrapperEmpty = document.getElementById("taskWrapperEmpty");
 
-  const profileName = document.getElementById("profileName");
-  const userProfileData = JSON.parse(localStorage.getItem("currentUser")) || [];
-  profileName.innerText = userProfileData.username;
+  // START Complete and Detete Task
+  taskWrapper.addEventListener("click", (event) => {
+    const completeBtn = event.target.closest('[id^="completeTask-"]');
+    const deleteBtn = event.target.closest('[id^="deleteTask-"]');
+
+    if (!completeBtn && !deleteBtn) return;
+
+    if (completeBtn) {
+      event.preventDefault();
+      const taskId = Number(completeBtn.dataset.id);
+
+      Swal.fire({
+        title: "Mark as Complete?",
+        text: "This tasks will be marked as completed.",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Complete",
+        cancelButtonText: "Cancel",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const completeResult = myTasks.completeTask(taskId);
+
+          if (completeResult.success) {
+            existingTasks = myTasks.getTasksByUserId(userProfileData.id);
+            if (searchTaskInput) searchTaskInput.value = "";
+            displayAllTasks(existingTasks);
+
+            Swal.fire("Completed!", "Task successfully completed.", "success");
+          } else {
+            Swal.fire("Failed!", completeResult.message || "An error occurred while completing.", "error");
+          }
+        }
+      });
+    }
+
+    if (deleteBtn) {
+      event.preventDefault();
+      const taskId = Number(deleteBtn.dataset.id);
+
+      Swal.fire({
+        title: "Are you sure?",
+        text: "Deleted tasks cannot be restored!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Delete",
+        cancelButtonText: "Cancel",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const deleteResult = myTasks.deleteTask(taskId);
+
+          if (deleteResult.success) {
+            existingTasks = myTasks.getTasksByUserId(userProfileData.id);
+            if (searchTaskInput) searchTaskInput.value = "";
+            displayAllTasks(existingTasks);
+
+            Swal.fire("Deleted!", "Task successfully deleted.", "success");
+          } else {
+            Swal.fire("Failed!", deleteResult.message || "An error occurred while deleting.", "error");
+          }
+        }
+      });
+    }
+  });
+  // END Complete and Detete Task
 
   function displayAllTasks(tasks = existingTasks) {
     if (tasks.length === 0) {
       // console.info("Data kosong");
-      taskWrapper.className = "hidden";
-      taskWrapperEmpty.className = "flex justify-center items-center h-[420px] mx-auto";
+      taskWrapper.classList.add("hidden");
+      taskWrapperEmpty.classList.remove("hidden");
     } else {
       // console.info("Data ada dan siap ditampilkan");
+      taskWrapper.classList.remove("hidden");
+      taskWrapperEmpty.classList.add("hidden");
       taskWrapper.innerHTML = "";
-      taskWrapperEmpty.className = "hidden";
+
+      const fragment = document.createDocumentFragment();
 
       tasks.forEach((task) => {
         const userFriendlyDate = formatDate(task.created_at);
-
         const itemTask = document.createElement("div");
         // itemTask.className = "flex justify-between bg-lotask-white";
         itemTask.innerHTML = createItemTaskHTML(task, userFriendlyDate);
-        taskWrapper.appendChild(itemTask);
-
-        itemTask.querySelector(`#completeTask-${task.id}`).addEventListener("click", (event) => {
-          event.preventDefault();
-          //   console.info(task.id);
-          myTasks.completeTask(task.id);
-
-          const updateData = myTasks.getTasks();
-          displayAllTasks(updateData);
-        });
-
-        itemTask.querySelector(`#deleteTask-${task.id}`).addEventListener("click", (event) => {
-          event.preventDefault();
-          //   console.info(task.id);
-          myTasks.deleteTask(task.id);
-
-          const deleteData = myTasks.getTasks();
-          displayAllTasks(deleteData);
-        });
+        fragment.appendChild(itemTask);
       });
+      taskWrapper.appendChild(fragment);
     }
   }
 
@@ -92,23 +157,25 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             `
             }
+
         </div>
     </div>
 
     <div class="flex flex-row items-center w-full md:w-auto gap-3 md:gap-x-4 shrink-0 mt-2 md:mt-0">
-        <a href="#" id="deleteTask-${task.id}"
+        <a href="#" id="deleteTask-${task.id}" data-id="${task.id}"
             class="flex-1 md:flex-none justify-center flex items-center font-extrabold text-dark-slate bg-[#FF6B6B] border-2 border-darken-slate px-4 md:px-6 h-10 md:h-12 text-sm md:text-base shadow-c-xs hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none uppercase tracking-wide smooth-transition-150">Delete</a>
         
         ${
           task.isCompleted === false
             ? `
-        <a href="#" id="completeTask-${task.id}"
+        <a href="#" id="completeTask-${task.id}" data-id="${task.id}"
             class="flex-1 md:flex-none justify-center flex items-center text-dark-slate px-4 md:px-6 h-10 md:h-12 text-sm md:text-base font-extrabold bg-lotask-blue border-2 border-darken-slate shadow-c-xs hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none uppercase tracking-wide smooth-transition-150">Complete</a>
             `
             : `
         <a href="#" id="completeTask-${task.id}" class="hidden">Complete</a>
             `
         }
+
     </div>
 </div>
     `;

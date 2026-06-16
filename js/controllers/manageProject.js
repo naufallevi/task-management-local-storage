@@ -4,9 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const profileName = document.getElementById("profileName");
   const userProfileData = myProjects.getCurrentUser();
-  if (profileName && userProfileData.username) {
-    profileName.innerText = userProfileData.username;
-  }
+  if (profileName && userProfileData.username) profileName.innerText = userProfileData.username;
 
   // Membuat variable untuk mengambil projects
   let existingProjects = myProjects.getProjectsByUserId(userProfileData.id);
@@ -21,8 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         project.projectName.toLowerCase().includes(valueSearchProject),
       );
 
-        displayAllProjects(filteredProject);
-      
+      displayAllProjects(filteredProject);
     });
   }
   // END Search Project
@@ -33,11 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // START Delete Project
   projectWrapper.addEventListener("click", (event) => {
     const deleteBtn = event.target.closest('[id^="deleteProject-"]');
+    if (!deleteBtn) return;
 
     if (deleteBtn) {
       event.preventDefault();
-
       const projectId = Number(deleteBtn.dataset.id);
+
       Swal.fire({
         title: "Are you sure?",
         text: "Deleted projects cannot be restored!",
@@ -64,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       });
-      return;
     }
   });
   // END Delete Project

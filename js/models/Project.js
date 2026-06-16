@@ -24,9 +24,9 @@ class Project {
     const index = this.projects.findIndex((project) => project.id === projectId);
 
     if (index !== -1) {
-      // this.projects[index].isCompleted = true;
       this.projects.splice(index, 1);
       this.updateLocalStorage();
+
       return {
         success: true,
       };
