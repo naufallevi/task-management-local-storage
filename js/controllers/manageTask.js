@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Membuat variable untuk mengambil tasks
   let existingTasks = myTasks.getTasksByUserId(userProfileData.id);
-  console.info(existingTasks);
+  // console.info(existingTasks);
 
   // START Search Task
   const searchTaskInput = document.getElementById("searchTask");
@@ -116,7 +116,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function getProjectName(projectId) {
+    if (!projectId) return "No Project";
+    const projects = JSON.parse(localStorage.getItem("projects")) || [];
+    const project = projects.find((p) => p.id === Number(projectId));
+
+    return project ? project.projectName : "No Project";
+  }
+
   function createItemTaskHTML(task, userFriendlyDate) {
+    const projectName = getProjectName(task.projectId);
+
     return `
 <div class="flex flex-col md:flex-row justify-between bg-lotask-white p-4 md:p-6 w-full border-2 border-darken-slate shadow-c-lg items-start md:items-center gap-4 md:gap-6">
     <div class="task-card flex flex-col gap-3 md:gap-4 w-full">
@@ -136,6 +146,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     <i class="fa-solid fa-signal"></i>
                 </div>
                 <p class="uppercase">${task.taskPriority}</p>
+            </div>
+
+            <div class="flex gap-1.5 items-center px-2.5 py-1.5 md:px-3 border-2 border-darken-slate bg-lotask-green shadow-c-xs">
+                <div class="flex shrink-0 w-3 h-3 md:w-4 md:h-4">
+                    <i class="fa-solid fa-diagram-project"></i>
+                </div>
+                <p class="uppercase">${projectName}</p>
             </div>
 
             ${

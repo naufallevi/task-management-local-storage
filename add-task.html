@@ -177,23 +177,21 @@
               class="flex flex-col bg-lotask-white p-5 md:p-6 w-full border-2 border-darker-slate shadow-c-lg gap-5 md:gap-6 md:w-75 shrink-0"
             >
               <p class="font-bold text-lg leading-6.75">Add to Project</p>
-              <label for="jupyter" class="group relative">
+              <div id="projectListContainer" class="flex flex-col gap-3"></div>
+              <!-- <label for="jupyter" class="group relative">
                 <div
                   class="flex items-center gap-3 p-4 border-4 border-slate-500 group-has-checked:border-lotask-blue group-has-checked:ring-2 group-has-checked:ring-lotask-blue"
                 >
-                  <div class="w-12.5 h-12.5 flex shrink-0 items-center justify-center bg-[#FFD88D] rounded-full">
-                    <img src="img/icons/bank.svg" alt="icon" />
+                  <div class="w-12.5 h-12.5 flex shrink-0 items-center justify-center">
+                    <i class="fa-solid fa-hand-point-right fa-xl"></i>
                   </div>
                   <div class="flex flex-col justify-center">
                     <p class="font-bold text-lg leading-6.75">Jupyter</p>
-                    <p class="text-sm leading-5.25 text-taskia-grey">183,049 tasks</p>
-                  </div>
-                  <div class="w-6 h-6 hidden group-has-checked:flex items-center justify-center ml-auto">
-                    <img src="img/icons/tick-circle.svg" class="w-full" alt="icon" />
+                    <p class="text-sm leading-5.25 text-taskia-grey">xxx tasks</p>
                   </div>
                 </div>
                 <input id="jupyter" name="Projects" type="radio" class="absolute bottom-0 left-1/2 -z-10" />
-              </label>
+              </label> -->
             </div>
             <!-- END Project List -->
           </form>
@@ -203,6 +201,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/models/Task.js"></script>
+    <script src="js/models/Project.js"></script>
     <script src="js/controllers/addTask.js"></script>
   </body>
 </html>

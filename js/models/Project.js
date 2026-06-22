@@ -55,6 +55,20 @@ class Project {
     });
   }
 
+  getProjectsWithTaskCount(userId) {
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const projects = this.getProjectsByUserId(userId);
+
+    return projects.map((project) => {
+      const taskCount = tasks.filter((task) => Number(task.projectId) === project.id).length;
+
+      return {
+        ...project,
+        taskCount: taskCount,
+      };
+    });
+  }
+
   getCurrentUser() {
     return JSON.parse(localStorage.getItem("currentUser")) || [];
   }
