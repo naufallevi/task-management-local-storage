@@ -5,11 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const profileName = document.getElementById("profileName");
   const userProfileData = projectManager.getCurrentUser();
-  if (profileName && userProfileData.username) {
-    profileName.innerText = userProfileData.username;
-  }
+  if (profileName && userProfileData.username) profileName.innerText = userProfileData.username;
 
-  const formAddProject = document.getElementById("taskForm");
+  const formAddProject = document.getElementById("projectForm");
 
   formAddProject.addEventListener("submit", (event) => {
     event.preventDefault();

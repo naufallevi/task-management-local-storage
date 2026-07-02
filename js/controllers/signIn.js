@@ -11,12 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Validasi value form
     if (!validateForm(usernameByInput, passwordByInput)) return;
-    
-    const hashedPassword = CryptoJS.SHA256(passwordByInput).toString();
 
     const userDataByInput = {
       username: usernameByInput,
-      password: hashedPassword,
+      password: passwordByInput,
     };
 
     const result = userManager.signInUser(userDataByInput);

@@ -13,11 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Validasi value form
     if (!validateForm(inputUsername, inputPassword)) return;
 
-    const hashedPassword = CryptoJS.SHA256(inputPassword).toString();
-
     const userData = {
       username: inputUsername,
-      password: hashedPassword,
+      password: inputPassword,
       created_at: nowTime(),
     };
 

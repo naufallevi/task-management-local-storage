@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LOTASK | Tasks</title>
+    <title>LOTASK | Projects</title>
     <link href="./css/output.css" rel="stylesheet" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
@@ -31,7 +31,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
             <a
               href="./tasks.html"
-              class="flex items-center gap-2.5 p-[12px_16px] h-12 border-2 border-darken-slate bg-lotask-orange shadow-c-md"
+              class="flex items-center gap-2.5 p-[12px_16px] h-12 border-2 border-darken-slate bg-lotask-white hover:bg-lotask-yellow/30 shadow-c-sm smooth-transition-150"
             >
               <div class="w-6 h-6 shrink-0">
                 <i class="fa-solid fa-list-check"></i>
@@ -58,8 +58,8 @@
           </h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
             <a
-              href="./update-profile.html"
-              class="flex items-center gap-2.5 p-[12px_16px] h-12 border-2 border-darken-slate bg-lotask-white hover:bg-lotask-yellow/30 shadow-c-sm smooth-transition-150"
+              href="./update-profile.html#updateProfile"
+              class="flex items-center gap-2.5 p-[12px_16px] h-12 border-2 border-darken-slate bg-lotask-orange shadow-c-md"
             >
               <div class="w-6 h-6 shrink-0">
                 <i class="fa-solid fa-user"></i>
@@ -108,11 +108,11 @@
         </div>
         <!-- END Profile Bar -->
 
-        <div class="flex flex-col gap-5 lg:gap-7.5">
+        <div class="flex flex-col gap-5 lg:gap-7.5" id="updateProfile">
           <div class="content-header flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
               <h1 class="font-extrabold text-3xl lg:text-4xl leading-tight text-lotask-darken-slate text-shadow-lg">
-                Add New Task
+                Update Your Profile
               </h1>
               <p class="leading-5.25 text-sm lg:text-base mt-1 font-medium text-dark-slate/70">
                 Set the goals to grow your company
@@ -120,50 +120,66 @@
             </div>
           </div>
 
-          <form id="taskForm" class="group/form flex flex-col gap-7.5 md:flex-row">
-            <!-- START Task Form -->
+          <form id="profileForm" class="group/form flex flex-col gap-7.5 md:flex-row">
+            <!-- START Profile Form -->
             <div
               class="flex flex-col bg-lotask-white p-5 md:p-6 w-full border-2 border-darker-slate shadow-c-lg gap-5 md:gap-6"
             >
-              <div class="group/taskName">
-                <label for="taskName" class="font-semibold">Task Name</label>
+              <div class="group/username">
+                <label for="username" class="font-semibold">Username</label>
                 <div
                   class="group peer flex items-center p-[12px_12px] h-12 border-2 border-darker-slate focus-within:border-lotask-blue focus-within:shadow-c-md focus-within:shadow-lotask-blue mt-1.5"
                 >
                   <div class="mr-2.5 w-6 h-6 flex items-center justify-center">
-                    <i class="fa-solid fa-circle-plus fa-lg group-focus-within:text-lotask-blue"></i>
+                    <i class="fa-solid fa-user fa-lg group-focus-within:text-lotask-blue"></i>
                   </div>
                   <input
-                    id="taskName"
+                    id="username"
                     type="text"
                     class="font-semibold placeholder:text-slate-500 placeholder:font-normal focus:outline-none w-full"
-                    placeholder="Type task name"
-                    name="taskName"
+                    placeholder="Update your username"
+                    name="username"
                     required
                   />
                 </div>
               </div>
-              <div class="group/priority">
-                <label for="priority" class="font-semibold">Priority Level</label>
+
+              <div class="group/password">
+                <label for="password" class="font-semibold">Password</label>
                 <div
                   class="group peer flex items-center p-[12px_12px] h-12 border-2 border-darker-slate focus-within:border-lotask-blue focus-within:shadow-c-md focus-within:shadow-lotask-blue mt-1.5"
                 >
                   <div class="mr-2.5 w-6 h-6 flex items-center justify-center">
-                    <i class="fa-solid fa-layer-group fa-lg group-focus-within:text-lotask-blue"></i>
+                    <i class="fa-solid fa-lock fa-lg group-focus-within:text-lotask-blue"></i>
                   </div>
-                  <select
-                    id="taskPriority"
-                    class="font-semibold focus:outline-none w-full invalid:text-taskia-grey invalid:font-normal appearance-none bg-[url(img/icons/arrow-down.svg)] bg-no-repeat bg-right"
-                    name="priority"
-                    required
-                  >
-                    <option value="" disabled selected hidden>Select the level of task</option>
-                    <option value="Low" class="font-semibold text-slate-500">Low</option>
-                    <option value="Medium" class="font-semibold text-slate-500">Medium</option>
-                    <option value="High" class="font-semibold text-slate-500">High</option>
-                  </select>
+                  <input
+                    id="password"
+                    type="text"
+                    class="font-semibold placeholder:text-slate-500 placeholder:font-normal focus:outline-none w-full"
+                    placeholder="Update your password"
+                    name="password"
+                  />
                 </div>
               </div>
+
+              <div class="group/confirmPassword">
+                <label for="confirmPassword" class="font-semibold">Confirm Password</label>
+                <div
+                  class="group peer flex items-center p-[12px_12px] h-12 border-2 border-darker-slate focus-within:border-lotask-blue focus-within:shadow-c-md focus-within:shadow-lotask-blue mt-1.5"
+                >
+                  <div class="mr-2.5 w-6 h-6 flex items-center justify-center">
+                    <i class="fa-solid fa-house-lock fa-lg group-focus-within:text-lotask-blue"></i>
+                  </div>
+                  <input
+                    id="confirmPassword"
+                    type="text"
+                    class="font-semibold placeholder:text-slate-500 placeholder:font-normal focus:outline-none w-full"
+                    placeholder="Re-enter new password"
+                    name="confirmPassword"
+                  />
+                </div>
+              </div>
+
               <button
                 class="self-center h-12 w-1/2 text-slate-100 border-darker-slate border-2 shadow-none p-2.5 bg-darker-slate hover:bg-blue-600 hover:shadow-c-md hover:shadow-darker-slate active:bg-blue-500 smooth-transition-300"
               >
@@ -171,37 +187,15 @@
               </button>
             </div>
             <!-- END Task Form -->
-
-            <!-- START Project List -->
-            <div
-              class="flex flex-col bg-lotask-white p-5 md:p-6 w-full border-2 border-darker-slate shadow-c-lg gap-5 md:gap-6 md:w-75 shrink-0"
-            >
-              <p class="font-bold text-lg leading-6.75">Add to Project</p>
-              <div id="projectListContainer" class="flex flex-col gap-3"></div>
-              <!-- <label for="jupyter" class="group relative">
-                <div
-                  class="flex items-center gap-3 p-4 border-4 border-slate-500 group-has-checked:border-lotask-blue group-has-checked:ring-2 group-has-checked:ring-lotask-blue"
-                >
-                  <div class="w-12.5 h-12.5 flex shrink-0 items-center justify-center">
-                    <i class="fa-solid fa-hand-point-right fa-xl"></i>
-                  </div>
-                  <div class="flex flex-col justify-center">
-                    <p class="font-bold text-lg leading-6.75">Jupyter</p>
-                    <p class="text-sm leading-5.25 text-taskia-grey">xxx tasks</p>
-                  </div>
-                </div>
-                <input id="jupyter" name="Projects" type="radio" class="absolute bottom-0 left-1/2 -z-10" />
-              </label> -->
-            </div>
-            <!-- END Project List -->
           </form>
         </div>
       </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="js/models/Task.js"></script>
-    <script src="js/models/Project.js"></script>
-    <script src="js/controllers/addTask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script src="js/utils/Auth.js"></script>
+    <script src="js/models/User.js"></script>
+    <script src="js/controllers/updateProfile.js"></script>
   </body>
 </html>
