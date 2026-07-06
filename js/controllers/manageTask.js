@@ -1,14 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Membuat instance dari object Task
   const myTasks = new Task();
-
-  const profileName = document.getElementById("profileName");
-  const userProfileData = JSON.parse(localStorage.getItem("currentUser")) || [];
-
-  if (profileName && userProfileData.username) profileName.innerText = userProfileData.username;
+  const auth = new Auth();
+  const currentUser = auth.getCurrentUser();
 
   // Membuat variable untuk mengambil tasks
-  let existingTasks = myTasks.getTasksByUserId(userProfileData.id);
+  let existingTasks = myTasks.getTasksByUserId(currentUser.id);
   // console.info(existingTasks);
 
   // START Search Task
@@ -50,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const completeResult = myTasks.completeTask(taskId);
 
           if (completeResult.success) {
-            existingTasks = myTasks.getTasksByUserId(userProfileData.id);
+            existingTasks = myTasks.getTasksByUserId(currentUser.id);
             if (searchTaskInput) searchTaskInput.value = "";
             displayAllTasks(existingTasks);
 
@@ -78,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const deleteResult = myTasks.deleteTask(taskId);
 
           if (deleteResult.success) {
-            existingTasks = myTasks.getTasksByUserId(userProfileData.id);
+            existingTasks = myTasks.getTasksByUserId(currentUser.id);
             if (searchTaskInput) searchTaskInput.value = "";
             displayAllTasks(existingTasks);
 
