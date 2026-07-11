@@ -3,16 +3,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   const taskManager = new Task();
   const projectManager = new Project();
-
-  const profileName = document.getElementById("profileName");
-  const userProfileData = taskManager.getCurrentUser();
-  if (profileName && userProfileData.username) {
-    profileName.innerText = userProfileData.username;
-  }
+  const auth = new Auth();
+  const currentUser = auth.getCurrentUser();
 
   // START Add to Project
   const projectListContainer = document.getElementById("projectListContainer");
-  const userProjects = projectManager.getProjectsWithTaskCount(userProfileData.id);
+  const userProjects = projectManager.getProjectsWithTaskCount(currentUser.id);
 
   if (projectListContainer) {
     if (userProjects.length === 0) {
@@ -72,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
       taskName: document.querySelector("#taskName").value,
       taskPriority: document.querySelector("#taskPriority").value,
       projectId: projectId,
-      userId: userProfileData.id,
+      userId: currentUser.id,
       created_at: nowTime(),
       isCompleted_at: null,
     };

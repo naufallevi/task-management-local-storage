@@ -2,10 +2,8 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const projectManager = new Project();
-
-  const profileName = document.getElementById("profileName");
-  const userProfileData = projectManager.getCurrentUser();
-  if (profileName && userProfileData.username) profileName.innerText = userProfileData.username;
+  const auth = new Auth();
+  const currentUser = auth.getCurrentUser();
 
   const formAddProject = document.getElementById("projectForm");
 
@@ -14,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const projectData = {
       projectName: document.querySelector("#projectName").value,
-      userId: userProfileData.id,
+      userId: currentUser.id,
       created_at: nowTime(),
     };
 

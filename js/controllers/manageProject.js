@@ -1,13 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Membuat instance dari object Project
   const myProjects = new Project();
-
-  const profileName = document.getElementById("profileName");
-  const userProfileData = myProjects.getCurrentUser();
-  if (profileName && userProfileData.username) profileName.innerText = userProfileData.username;
+  const auth = new Auth();
+  const currentUser = auth.getCurrentUser();
 
   // Membuat variable untuk mengambil projects
-  let existingProjects = myProjects.getProjectsByUserId(userProfileData.id);
+  let existingProjects = myProjects.getProjectsByUserId(currentUser.id);
 
   // START Search Project
   const searchProjectInput = document.getElementById("searchProject");
@@ -52,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // existingProjects.push(...updateData);
             // displayAllProjects(existingProjects);
 
-            existingProjects = myProjects.getProjectsByUserId(userProfileData.id);
+            existingProjects = myProjects.getProjectsByUserId(currentUser.id);
             if (searchProjectInput) searchProjectInput.value = "";
             displayAllProjects(existingProjects);
 

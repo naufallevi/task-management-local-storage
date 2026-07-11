@@ -1,18 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const authManager = new Auth();
   const userManager = new User();
-
-  const profileName = document.getElementById("profileName");
-  let userProfileData = authManager.getCurrentUser();
-  if (!userProfileData || !userProfileData.id) return;
-  if (profileName) profileName.innerText = userProfileData.username;
+  const auth = new Auth();
+  const currentUser = auth.getCurrentUser()
 
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
   const confirmPasswordInput = document.getElementById("confirmPassword");
   const profileForm = document.getElementById("profileForm");
 
-  let dataCurrentUser = authManager.getUserByCurrentUser(userProfileData.id);
+  let dataCurrentUser = auth.getUserByCurrentUser(currentUser.id);
 
   if (usernameInput && dataCurrentUser) usernameInput.value = dataCurrentUser.username;
 
@@ -38,9 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
         passwordInput.value = "";
         confirmPasswordInput.value = "";
 
-        userProfileData = authManager.getCurrentUser();
-        profileName.innerText = userProfileData.username;
-        dataCurrentUser = authManager.getUserByCurrentUser(userProfileData.id);
+        currentUser = auth.getCurrentUser();
+        profileName.innerText = currentUser.username;
+        dataCurrentUser = auth.getUserByCurrentUser(currentUser.id);
       });
     } else {
       Swal.fire({
