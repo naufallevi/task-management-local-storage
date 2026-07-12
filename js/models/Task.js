@@ -1,7 +1,7 @@
 // Mengurus Bussiness Logic
 // Mengelola data seperti CRUD
 
-class Task {
+export default class Task {
   constructor() {
     this.tasks = this.getTasks();
   }
@@ -43,7 +43,7 @@ class Task {
       // this.tasks[index].isCompleted = true;
       this.tasks.splice(index, 1);
       this.updateLocalStorage();
-      
+
       return {
         success: true,
       };

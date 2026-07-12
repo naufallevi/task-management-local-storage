@@ -1,3 +1,5 @@
+import Auth from "../utils/Auth.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   const auth = new Auth();
   const currentUser = auth.getCurrentUser();
@@ -13,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnLogout = document.getElementById("btnLogout");
   if (btnLogout) {
     btnLogout.addEventListener("click", (event) => {
-      event.preventDefault(); 
+      event.preventDefault();
 
       if (typeof Swal !== "undefined") {
         Swal.fire({
@@ -23,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
           showCancelButton: true,
         }).then((result) => {
           if (result.isConfirmed) {
-            auth.logoutCurrentUser(); 
+            auth.logoutCurrentUser();
             window.location.href = "signin.html";
           }
         });

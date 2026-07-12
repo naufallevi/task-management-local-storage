@@ -1,3 +1,6 @@
+import Task from "../models/Task.js";
+import Auth from "../utils/Auth.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   // Membuat instance dari object Task
   const myTasks = new Task();

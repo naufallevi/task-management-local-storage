@@ -1,9 +1,9 @@
-// Penghubung antara UI dan model User
+import User from "../models/User.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const formAddUser = document.getElementById("userForm");
   const userManager = new User();
 
+  const formAddUser = document.getElementById("userForm");
   formAddUser.addEventListener("submit", (event) => {
     event.preventDefault();
 

@@ -1,3 +1,6 @@
+import Project from "../models/Project.js";
+import Auth from "../utils/Auth.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   // Membuat instance dari object Project
   const myProjects = new Project();

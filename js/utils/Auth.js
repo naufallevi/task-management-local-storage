@@ -1,4 +1,4 @@
-class Auth {
+export default class Auth {
   // constructor() {
   //   this.users = this.getUsers();
   // }

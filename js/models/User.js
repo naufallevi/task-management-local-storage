@@ -1,7 +1,7 @@
 // Mengurus Business Logic
 // Mengelola data seperti CRUD
 
-class User {
+export default class User {
   constructor() {
     this.users = this.getUsers();
   }

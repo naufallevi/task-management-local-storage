@@ -1,4 +1,6 @@
-// Penghubung antara UI dan model Task
+import Task from "../models/Task.js";
+import Project from "../models/Project.js";
+import Auth from "../utils/Auth.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const taskManager = new Task();

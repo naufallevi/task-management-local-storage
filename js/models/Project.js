@@ -1,7 +1,7 @@
 // Mengurus Bussiness Logic
 // Mengelola data seperti CRUD
 
-class Project {
+export default class Project {
   constructor() {
     this.projects = this.getProjects();
   }

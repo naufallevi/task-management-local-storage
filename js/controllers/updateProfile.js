@@ -1,7 +1,10 @@
+import User from "../models/User.js";
+import Auth from "../utils/Auth.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   const userManager = new User();
   const auth = new Auth();
-  const currentUser = auth.getCurrentUser()
+  let currentUser = auth.getCurrentUser();
 
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");

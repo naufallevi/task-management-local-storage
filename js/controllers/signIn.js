@@ -1,14 +1,15 @@
-// Penghubung antara UI dan model User
+import User from "../models/User.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const formSignIn = document.getElementById("userForm");
   const userManager = new User();
+
+  const formSignIn = document.getElementById("userForm");
   formSignIn.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const usernameByInput = formSignIn.querySelector("#username").value.trim();
     const passwordByInput = formSignIn.querySelector("#password").value;
-    
+
     // Validasi value form
     if (!validateForm(usernameByInput, passwordByInput)) return;
 
